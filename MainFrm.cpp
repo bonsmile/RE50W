@@ -103,7 +103,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		CFM_COLOR | CFM_BOLD | CFM_SIZE | CFM_FACE | CFM_BACKCOLOR,	//Mask options 
 		RGB(0,0,0),			//Text Color	
 		!CFE_BOLD,			//Text Effects
-		"Trebuchet MS",		//Font name
+		L"Trebuchet MS",		//Font name
 		200,				//Font yHeight
 		RGB(255,255,255));	//Font background color
 
@@ -152,7 +152,7 @@ BOOL CMainFrame::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 		m_REControl50W.GetTextRange50W(p_enRE50W->chrg.cpMin, p_enRE50W->chrg.cpMax);
 
 		//Call ShellExecute to perform default action based on the type of hyperlink
-		ShellExecute(m_hWnd, "Open", m_REControl50W.m_lpszChar, NULL, NULL, SW_MAXIMIZE);
+		//ShellExecute(m_hWnd, L"Open", m_REControl50W.m_lpszChar, NULL, NULL, SW_MAXIMIZE);
 	}
 
 	return CFrameWnd::OnNotify(wParam, lParam, pResult);

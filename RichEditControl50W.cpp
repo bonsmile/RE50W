@@ -27,15 +27,15 @@ END_MESSAGE_MAP()
 BOOL CRichEditControl50W::Create(DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID)
 {
 	//Load the MSFTEDIT.DLL library
-	m_hInstRichEdit50W = LoadLibrary("RICHED20_custom.DLL");
+	m_hInstRichEdit50W = LoadLibrary(L"RICHED20_custom.DLL");
 	if (!m_hInstRichEdit50W)
 	{
-		AfxMessageBox("MSFTEDIT.DLL Didn't Load");
+		AfxMessageBox(L"MSFTEDIT.DLL Didn't Load");
 		return(0);
 	}
 
 	CWnd* pWnd = this;
-	return pWnd->Create("RichEdit60W", NULL, dwStyle, rect, pParentWnd, nID);
+	return pWnd->Create(L"RichEdit60W", NULL, dwStyle, rect, pParentWnd, nID);
 }
 
 void CRichEditControl50W::SetSel50W(long nStartChar, long nEndChar)
