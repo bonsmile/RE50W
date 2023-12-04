@@ -1,4 +1,4 @@
-// MainFrm.cpp : implementation of the CMainFrame class
+﻿// MainFrm.cpp : implementation of the CMainFrame class
 // By Jim Dunne http://www.topjimmy.net/tjs
 // topjimmy@topjimmy.net
 // copyright(C)2005
@@ -256,6 +256,8 @@ DWORD CALLBACK EditStreamOutCallback(DWORD_PTR dwCookie, LPBYTE pbBuff, LONG cb,
 
 void CMainFrame::OnPopupPaste() 
 {
+	m_REControl50W.SendMessage(WM_PASTE, 0, 0);
+
 	HANDLE hFile = CreateFileW(L"C:/test.html", GENERIC_WRITE, 0, NULL,
 		CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE)
@@ -268,8 +270,9 @@ void CMainFrame::OnPopupPaste()
 	es.pfnCallback = EditStreamOutCallback;
 	//m_REControl50W.StreamOut(0x00100000 | 0x0008, es);
 	m_REControl50W.SendMessage(EM_STREAMOUT, 0x00100000 | 0x0008, (LPARAM)&es);
+	if(es.dwError != 0)
+		AfxMessageBox(L"写入 HTML 失败！");
 
-    //m_REControl50W.SendMessage(WM_PASTE, 0, 0);
 	CloseHandle(hFile);
 }
 
